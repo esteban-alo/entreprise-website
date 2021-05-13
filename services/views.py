@@ -4,11 +4,9 @@ from .models import Service
 
 # Create your views here.
 def services(request: HttpResponse) -> render:
-    """
-    services = Service.object.all()
+    services = Service.objects.all()
     context = {
         'services': services
     }
-    """
-    return render(request=request, template_name="services/services.html")
+    return render(request=request, template_name="services/services.html", context=context)
 

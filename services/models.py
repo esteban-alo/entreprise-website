@@ -11,9 +11,10 @@ class Service(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        # Show service item title in the Service Admin list
+        return self.title
+
     class Meta:
         ordering = ['-created_date']
-
-        def __str__(self):
-            return self.title
 

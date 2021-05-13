@@ -18,10 +18,6 @@ from . import views
 
 
 urlpatterns = [
-    # Core paths
-    path('', views.home, name='home'),
-    path('about/', views.about, name='about'),
-    path('store/', views.store, name='store'),
-    path('contact/', views.contact, name='contact'),
-    path('sample/', views.sample, name='sample'),
+    path('', views.blog, name="blog"),
+    path('category/<int:category_id>/', views.category, name="category"),
 ]
