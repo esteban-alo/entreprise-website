@@ -13,30 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
+from django.urls import path
+from . import views
+
 
 urlpatterns = [
-    # Admin paths
-    path('admin/', admin.site.urls),
-    # Core paths
-    path('', include('core.urls')),
-    # Services
-    path('services/', include('services.urls')),
-    # Blog
-    path('blog/', include('blog.urls')),
-    # Pages
-    path('pages/', include('pages.urls')),
-    # Contact
-    path('contact/', include('contact.urls')),
+    path('<int:page_id>/', views.page, name="pages"),
 ]
 
-
-"""
-Show media files in DEBUG
-"""
-if settings.DEBUG:
-    from django.conf.urls.static import static
-
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'core',
     'blog',
     'services.apps.ServicesConfig',
+    'links.apps.LinksConfig',
+    'pages.apps.PagesConfig',
+    'ckeditor',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Links Dictionary
+                'links.processors.context_dict'
             ],
         },
     },
@@ -131,3 +137,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink']
+        ]
+    }
+}
+
+# Email config
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'e22704f826fb3f'
+EMAIL_HOST_PASSWORD = '9e8e8c7bb3b33f'
+EMAIL_PORT = '2525'

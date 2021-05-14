@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}
-    Contact
+Contact
 {% endblock %}
 {% block content %}
 <section class="page-section about-heading">
@@ -16,32 +16,41 @@
                             <span class="section-heading-lower">Contact</span>
                         </h2>
                         <!-- Contact Form-->
-                        <form>
+                        {% if 'ok' in request.GET %}
+                        <p>
+                            <b>
+                                Your message was sent
+                            </b>
+                        </p>
+                        {% endif %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label>Name *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
+                                    {{ form.name }}
                                 </div>
+                                {{ form.name.errors }}
                             </div>
                             <div class="form-group">
                                 <label>Email *</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
+                                    {{ form.email }}
                                 </div>
-                                <ul class="errorlist">
-                                    <li>Invalid email</li>
-                                </ul>
+                                {{ form.email.errors }}
                             </div>
                             <div class="form-group">
                                 <label>Message *</label>
                                 <div class="input-group">
-                                    <textarea class="form-control"></textarea>
+                                    {{ form.content }}
                                 </div>
+                                {{ form.email.errors }}
                             </div>
                             <div class="text-center">
                                 <input type="submit" class="btn btn-primary btn-block py-2" value="Send">
                             </div>
                         </form>
+                        <!-- {{ request.POST }} -->
                     </div>
                 </div>
             </div>
