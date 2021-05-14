@@ -12,18 +12,20 @@ Blog
                         <div class="cta-innerv text-center rounded">
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">
-                                    {{post.published|date:"SHORT_DATE_FORMAT"}}
+                                    {{ post.published | date:"SHORT_DATE_FORMAT" }}
                                 </span>
                                 <span class="section-heading-lower">
-                                    {{post.title}}
+                                    {{ post.title }}
                                 </span>
                             </h2>
                             <p class="mb-0">
-                                <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
-                                     src="{{post.image.url}}" alt="">
+                                {% if post.image %}
+                                    <img class="mx-auto d-flex rounded img-fluid mb-3 mb-lg-0"
+                                         src="{{ post.image.url }}" alt="">
+                                {% endif %}
                             </p>
                             <p class="mb-0 mbt">
-                                {{post.content|linebreaks}}
+                                {{ post.content | linebreaks }}
                             </p>
                             <p class="mb-0 mbt">
                                 <span class="section-heading-under">
@@ -32,9 +34,12 @@ Blog
                                     <em>
                                      {% for category in post.categories.all %}
                                         <a href="{% url 'category' category.id %}" class="link">
-                                            {{category.name}}
+                                            {{ category.name }}
                                         </a>
-                                        {% if not forloop.last %},{% endif %}
+                                        <!-- Check if is the last loop iteration -->
+                                        {% if not forloop.last %}
+                                            ,
+                                        {% endif %}
                                      {% endfor %}
                                     </em>
                                 </span>
